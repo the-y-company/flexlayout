@@ -78,7 +78,7 @@ server <- function(input, output, session) {
 
   output$context <- renderUI({
     p(
-      "The plot display the petal length and width of the",
+      "The plot displays the petal length and width of the",
       strong(input$specie),
       "of iris."
     )
