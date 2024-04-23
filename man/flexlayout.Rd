@@ -9,13 +9,19 @@ flexlayout(
   center,
   right = NULL,
   left_icon = shiny::icon("filter"),
-  right_icon = shiny::icon("info")
+  right_icon = shiny::icon("info"),
+  left_width = 22,
+  center_width = 56,
+  right_width = 22
 )
 }
 \arguments{
 \item{left, center, right}{Content of the page.}
 
 \item{left_icon, right_icon}{Icon to show on the left and right side of the page.}
+
+\item{left_width, center_width, right_width}{Width of the left, center, and right columns.
+an integer between 0 and 100 indicating the percentage of the width.}
 }
 \description{
 Flexible layout for Shiny applications.

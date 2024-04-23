@@ -1,4 +1,5 @@
 import { isInOffcanvas, isIntabs, setInOffcanvas, setInTabs } from "./state";
+import { getWidth } from "./utils";
 
 $(() => {
   handlePage();
@@ -37,7 +38,7 @@ const handlePage = () => {
 
 const handleLeftBar = () => {
   $(".left-bar-trigger").on("click", (e) => {
-    let el = $(e.target).closest(".layout").find(".offcanvas-left");
+    const el = $(e.target).closest(".layout").find(".offcanvas-left");
     const ocInst = new bootstrap.Offcanvas(el);
     ocInst.show();
   });
@@ -45,17 +46,17 @@ const handleLeftBar = () => {
 
 const handleRightBar = () => {
   $(".right-bar-trigger").on("click", (e) => {
-    let el = $(e.target).closest(".layout").find(".offcanvas-right");
+    const el = $(e.target).closest(".layout").find(".offcanvas-right");
     const ocInst = new bootstrap.Offcanvas(el);
     ocInst.show();
   });
 };
 
 const moveToOffCanvas = (params) => {
-  let offcanvas = $(params.el)
+  const offcanvas = $(params.el)
     .closest(".layout")
     .find(`.offcanvas-${params.side}`);
-  let el = $(params.el)
+  const el = $(params.el)
     .find("div")
     .first()
     .detach()
@@ -83,7 +84,6 @@ const moveAllToOffCanvas = () => {
     return;
   }
 
-  $(".nav-tabs").addClass("float-tabs");
   $(".center-bar").css("width", "100%");
 
   setInTabs(false);
@@ -109,8 +109,6 @@ const moveAllToTabs = () => {
     return;
   }
 
-  $(".nav-tabs").removeClass("float-tabs");
-
   setInTabs(true);
   setInOffcanvas(false);
   $(".layout")
@@ -122,7 +120,9 @@ const moveAllToTabs = () => {
       $(el)
         .find(".offcanvas-flexlayout-right")
         .each((_, el) => moveToTab({ el: el, side: "right" }));
-      $(".center-bar").css("width", "56%");
+
+      const w = getWidth(el, "center");
+      $(".center-bar").css("width", `${w}%`);
       return;
     }
     $(el).find(".center-bar").css("width", "100%");

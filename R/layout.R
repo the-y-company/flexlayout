@@ -7,6 +7,8 @@
 #' 
 #' @param left,center,right Content of the page.
 #' @param left_icon,right_icon Icon to show on the left and right side of the page.
+#' @param left_width,center_width,right_width Width of the left, center, and right columns.
+#'   an integer between 0 and 100 indicating the percentage of the width.
 #' 
 #' @importFrom shiny div tags p
 #' 
@@ -16,24 +18,28 @@ flexlayout <- function(
   center,
   right = NULL,
   left_icon = shiny::icon("filter"),
-  right_icon = shiny::icon("info")
+  right_icon = shiny::icon("info"),
+  left_width = 22,
+  center_width = 56,
+  right_width = 22
 ){
   if(missing(left) || missing(center))
     stop("must pass `left`, and `center`")
 
-  lw <- 22
-  cw <- 56
-  rw <- 22
+  left_width <- 22
+  center_width <- 56
+  right_width <- 22
 
   # make the center wider when there is not right column
   if(is.null(right)){
-    lw <- 22
-    cw <- 78
-    rw <- 0
+    left_width <- 22
+    center_width <- 78
+    right_width <- 0
   }
 
   div(
     class = "layout",
+    `data-layout` = sprintf("[%s,%s,%s]", left_width, center_width, right_width),
     flexlayoutDependencies(),
     p(
       class = "d-md-block d-lg-none pb-2",
@@ -65,17 +71,17 @@ flexlayout <- function(
       class = "d-flex",
       div(
         class = "d-none d-lg-block left-bar",
-        style = sprintf("width:%s%%", lw),
+        style = sprintf("width:%s%%", left_width),
         left
       ),
       div(
         class = "center-bar",
-        style = sprintf("width:%s%%", cw),
+        style = sprintf("width:%s%%", center_width),
         center
       ),
       div(
         class = "d-none d-lg-block right-bar",
-        style = sprintf("width:%s%%", rw),
+        style = sprintf("width:%s%%", right_width),
         right
       )
     ),
