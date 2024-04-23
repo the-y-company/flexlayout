@@ -13,10 +13,10 @@ bundle_dev:
 document: site
 	R -s -e "devtools::document()"
 
-site:
+mkdocs:
 	mkdocs build
 	
-site_dev:
+mkdocs:
 	mkdocs serve
 
 dev: document bundle_dev
