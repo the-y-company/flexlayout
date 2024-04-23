@@ -1,5 +1,4 @@
-let intabs = false;
-let inOffcanvas = false;
+import { isInOffcanvas, isIntabs, setInOffcanvas, setInTabs } from "./state";
 
 $(() => {
   handlePage();
@@ -15,7 +14,7 @@ const handlePage = () => {
     }
 
     if (window.innerWidth > 991) {
-      intabs = true;
+      setInTabs(true);
       return;
     }
 
@@ -80,15 +79,15 @@ const moveToTab = (params) => {
 };
 
 const moveAllToOffCanvas = () => {
-  if (inOffcanvas) {
+  if (isInOffcanvas()) {
     return;
   }
 
   $(".nav-tabs").addClass("float-tabs");
   $(".center-bar").css("width", "100%");
 
-  intabs = false;
-  inOffcanvas = true;
+  setInTabs(false);
+  setInOffcanvas(true);
   $(".layout")
     .find(".left-bar")
     .each((_, el) => moveToOffCanvas({ el: el, side: "left" }));
@@ -106,14 +105,14 @@ const moveAllToOffCanvas = () => {
 };
 
 const moveAllToTabs = () => {
-  if (intabs) {
+  if (isIntabs()) {
     return;
   }
 
   $(".nav-tabs").removeClass("float-tabs");
 
-  intabs = true;
-  inOffcanvas = false;
+  setInTabs(true);
+  setInOffcanvas(false);
   $(".layout")
     .find(".offcanvas-flexlayout-left")
     .each((_, el) => moveToTab({ el: el, side: "left" }));

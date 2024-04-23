@@ -6,6 +6,7 @@
 #' into offcanvas that can be brought to view by clicking on icons.
 #' 
 #' @param left,center,right Content of the page.
+#' @param left_icon,right_icon Icon to show on the left and right side of the page.
 #' 
 #' @importFrom shiny div tags p
 #' 
@@ -13,15 +14,18 @@
 flexlayout <- function(
   left,
   center,
-  right = NULL
+  right = NULL,
+  left_icon = shiny::icon("filter"),
+  right_icon = shiny::icon("info")
 ){
-  if(missing(left) | missing(center))
+  if(missing(left) || missing(center))
     stop("must pass `left`, and `center`")
 
   lw <- 22
   cw <- 56
   rw <- 22
 
+  # make the center wider when there is not right column
   if(is.null(right)){
     lw <- 22
     cw <- 78
@@ -30,16 +34,17 @@ flexlayout <- function(
 
   div(
     class = "layout",
+    flexlayoutDependencies(),
     p(
       class = "d-md-block d-lg-none pb-2",
       tags$a(
         class = "float-left left-bar-trigger cursor cursor-pointer",
-        shiny::icon("filter")
+        left_icon
       ),
       if(!is.null(right))
         tags$a(
           class = "float-right right-bar-trigger cursor cursor-pointer",
-          shiny::icon("info")
+          right_icon
         )
     ),
     div(

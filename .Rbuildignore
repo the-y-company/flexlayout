@@ -5,3 +5,10 @@
 ^webpack\.dev\.js$
 ^webpack\.prod\.js$
 ^webpack\.common\.js$
+^makefile$
+^test\.R$
+^LICENSE\.md$
+^\.eslintrc\.js$
+^docs$
+^mkdocs\.yml$
+^site$

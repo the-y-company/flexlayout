@@ -1,12 +1,21 @@
 Package: flexlayout
-Title: What the Package Does (One Line, Title Case)
+Title: Flexible Layout for 'Shiny'
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+  c(
+    person(given = "John",
+           family = "Coene",
+           role = c("aut", "cre"),
+           email = "john@the-y-company.com",
+           comment = c(ORCID = "0000-0002-6637-4107")),
+    person(family = "The Association of State and Territorial Health Officials", role = c("fnd"))
+  )
+Description: Responsive layout for 'Shiny' that collapse into offcanvas on small screens.
+License: GPL (>= 2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
+Imports:
+  shiny
+Suggests:
+  htmltools
