@@ -1,17 +1,17 @@
 # Install
 
-flexfilter is not yet on CRAN, you can get it from Github.
+flexlayout is not yet on CRAN, you can get it from Github.
 
 __Using remotes__
 
 ```r
 # install.packages("remotes")
-remotes::install_github("the-y-company/flexfilter")
+remotes::install_github("the-y-company/flexlayout")
 ```
 
 __Using pak__
 
 ```r
 # install.packages("pak")
-pak::pkg_install("the-y-company/flexfilter")
+pak::pkg_install("the-y-company/flexlayout")
 ```
