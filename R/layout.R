@@ -64,7 +64,7 @@ flexlayout <- function(
     div(
       class = "d-flex",
       div(
-        class = "d-none d-lg-block left-bar border-end border-secondary-subtle",
+        class = "d-none d-lg-block left-bar",
         style = sprintf("width:%s%%", lw),
         left
       ),
