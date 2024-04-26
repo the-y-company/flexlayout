@@ -65,7 +65,3 @@ flexlayout <- function(
 ```
 
 `right = NULL` results in a two-column layout. You can specify separate icons for the left and right offcanvas elements. The `*_width` arguments specify the width of each column in the layout and should sum to 100.
-
-## Behavior
-
-The below animation shows the behavior of the layout on various device types.
