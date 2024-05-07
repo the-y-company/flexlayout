@@ -88,19 +88,17 @@ const moveAllToOffCanvas = () => {
 
   setInTabs(false);
   setInOffcanvas(true);
-  $(".layout")
-    .find(".left-bar")
-    .each((_, el) => moveToOffCanvas({ el: el, side: "left" }));
 
   $(".layout").each((_, el) => {
-    if ($(el).find(".offcanvas-flexlayout-right").length) {
+    if ($(el).find(".offcanvas-flexlayout-right").length)
       $(el)
         .find(".right-bar")
         .each((_, el) => moveToOffCanvas({ el: el, side: "right" }));
-      $(".center-bar").css("width", "100%");
-      return;
-    }
-    $(el).find(".center-bar").css("width", "100%");
+
+    if ($(el).find(".offcanvas-flexlayout-left").length)
+      $(el)
+        .find(".left-bar")
+        .each((_, el) => moveToOffCanvas({ el: el, side: "left" }));
   });
 };
 
@@ -111,20 +109,19 @@ const moveAllToTabs = () => {
 
   setInTabs(true);
   setInOffcanvas(false);
-  $(".layout")
-    .find(".offcanvas-flexlayout-left")
-    .each((_, el) => moveToTab({ el: el, side: "left" }));
 
   $(".layout").each((_, el) => {
-    if ($(el).find(".offcanvas-flexlayout-right").length) {
+    if ($(el).find(".offcanvas-flexlayout-right").length)
       $(el)
         .find(".offcanvas-flexlayout-right")
         .each((_, el) => moveToTab({ el: el, side: "right" }));
 
-      const w = getWidth(el, "center");
-      $(".center-bar").css("width", `${w}%`);
-      return;
-    }
-    $(el).find(".center-bar").css("width", "100%");
+    if ($(el).find(".offcanvas-flexlayout-left").length)
+      $(el)
+        .find(".offcanvas-flexlayout-left")
+        .each((_, el) => moveToTab({ el: el, side: "left" }));
+
+    const w = getWidth(el, "center");
+    $(".center-bar").css("width", `${w}%`);
   });
 };

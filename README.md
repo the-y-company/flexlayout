@@ -49,7 +49,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-Several self-explanatory options can be passed to the `flexlayout()` function to customize the output:
+Several options can be passed to the `flexlayout()` function to customize the output:
 
 ``` r
 flexlayout <- function(
@@ -64,4 +64,6 @@ flexlayout <- function(
 )
 ```
 
-`right = NULL` results in a two-column layout. You can specify separate icons for the left and right offcanvas elements. The `*_width` arguments specify the width of each column in the layout and should sum to 100.
+Setting `right` or `left` to `NULL` results in a two-column layout. 
+You can specify separate icons for the left and right offcanvas elements. 
+The `*_width` arguments specify the width of each column in the layout and should sum to 100.

@@ -5,7 +5,7 @@
 \title{Layout}
 \usage{
 flexlayout(
-  left,
+  left = NULL,
   center,
   right = NULL,
   left_icon = shiny::icon("filter"),

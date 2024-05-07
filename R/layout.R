@@ -14,7 +14,7 @@
 #' 
 #' @export
 flexlayout <- function(
-  left,
+  left = NULL,
   center,
   right = NULL,
   left_icon = shiny::icon("filter"),
@@ -23,18 +23,18 @@ flexlayout <- function(
   center_width = 56,
   right_width = 22
 ){
-  if(missing(left) || missing(center))
-    stop("must pass `left`, and `center`")
-
-  left_width <- 22
-  center_width <- 56
-  right_width <- 22
+  if(is.null(left) && is.null(center))
+    stop("must pass `left`, and/or `right`, they are currently both `NULL`")
 
   # make the center wider when there is not right column
   if(is.null(right)){
-    left_width <- 22
-    center_width <- 78
-    right_width <- 0
+    center_width <- center_width + left_width
+    right_width <- 0L
+  }
+
+  if(is.null(left)){
+    center_width <- center_width + right_width
+    left_width <- 0L
   }
 
   div(
@@ -43,30 +43,32 @@ flexlayout <- function(
     flexlayoutDependencies(),
     p(
       class = "d-md-block d-lg-none pb-2",
-      tags$a(
-        class = "float-left left-bar-trigger cursor cursor-pointer",
-        left_icon
-      ),
+      if(!is.null(left))
+        tags$a(
+          class = "float-left left-bar-trigger cursor cursor-pointer",
+          left_icon
+        ),
       if(!is.null(right))
         tags$a(
           class = "float-right right-bar-trigger cursor cursor-pointer",
           right_icon
         )
     ),
-    div(
-      class = "offcanvas offcanvas-start offcanvas-left offcanvas-flexlayout-left",
-      tabindex = "-1",
+    if(!is.null(left))
       div(
-        class = "offcanvas-header",
-        tags$button(
-          type = "button",
-          class = "btn-close",
-          `data-bs-dismiss` = "offcanvas",
-          `aria-label` = "Close"
-        )
+        class = "offcanvas offcanvas-start offcanvas-left offcanvas-flexlayout-left",
+        tabindex = "-1",
+        div(
+          class = "offcanvas-header",
+          tags$button(
+            type = "button",
+            class = "btn-close",
+            `data-bs-dismiss` = "offcanvas",
+            `aria-label` = "Close"
+          )
+        ),
+        div(class = "offcanvas-body")
       ),
-      div(class = "offcanvas-body")
-    ),
     div(
       class = "d-flex",
       div(
