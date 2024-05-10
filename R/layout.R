@@ -6,7 +6,7 @@
 #' into offcanvas that can be brought to view by clicking on icons.
 #' 
 #' @param left,center,right Content of the page.
-#' @param left_icon,right_icon Icon to show on the left and right side of the page.
+#' @param left_button,right_button Left and right buttons to open the offcanvas.
 #' @param left_width,center_width,right_width Width of the left, center, and right columns.
 #'   an integer between 0 and 100 indicating the percentage of the width.
 #' 
@@ -17,8 +17,8 @@ flexlayout <- function(
   left = NULL,
   center,
   right = NULL,
-  left_icon = shiny::icon("filter"),
-  right_icon = shiny::icon("info"),
+  left_button = offcanvas_button(shiny::icon("filter")),
+  right_button = offcanvas_button(shiny::icon("info")),
   left_width = 22,
   center_width = 56,
   right_width = 22
@@ -37,22 +37,24 @@ flexlayout <- function(
     left_width <- 0L
   }
 
+  if(!is.null(left_button))
+    left_button <- left_button |>
+      htmltools::tagAppendAttributes(class = "float-left left-bar-trigger")
+
+  if(!is.null(right_button))
+    right_button <- right_button |>
+      htmltools::tagAppendAttributes(class = "float-right right-bar-trigger")
+
   div(
     class = "layout",
     `data-layout` = sprintf("[%s,%s,%s]", left_width, center_width, right_width),
     flexlayoutDependencies(),
     p(
       class = "d-md-block d-lg-none pb-2",
-      if(!is.null(left))
-        tags$a(
-          class = "float-left left-bar-trigger cursor cursor-pointer",
-          left_icon
-        ),
-      if(!is.null(right))
-        tags$a(
-          class = "float-right right-bar-trigger cursor cursor-pointer",
-          right_icon
-        )
+      if(!is.null(left_button) && !is.null(left))
+        left_button,
+      if(!is.null(right_button) && !is.null(right))
+        right_button
     ),
     if(!is.null(left))
       div(

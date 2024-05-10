@@ -56,8 +56,8 @@ flexlayout <- function(
   left,
   center,
   right = NULL,
-  left_icon = shiny::icon("filter"),
-  right_icon = shiny::icon("info"),
+  left_button = offcanvas_button(shiny::icon("filter")),
+  right_button = offcanvas_button(shiny::icon("info")),
   left_width = 22,
   center_width = 56,
   right_width = 22
@@ -65,5 +65,5 @@ flexlayout <- function(
 ```
 
 Setting `right` or `left` to `NULL` results in a two-column layout. 
-You can specify separate icons for the left and right offcanvas elements. 
+You can modify the buttons used to open the offcanvas elements used on smaller screens.
 The `*_width` arguments specify the width of each column in the layout and should sum to 100.

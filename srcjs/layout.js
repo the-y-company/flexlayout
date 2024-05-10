@@ -37,7 +37,7 @@ const handlePage = () => {
 };
 
 const handleLeftBar = () => {
-  $(".left-bar-trigger").on("click", (e) => {
+  $("body").on("click", ".left-bar-trigger", (e) => {
     const el = $(e.target).closest(".layout").find(".offcanvas-left");
     const ocInst = new bootstrap.Offcanvas(el);
     ocInst.show();
@@ -45,7 +45,7 @@ const handleLeftBar = () => {
 };
 
 const handleRightBar = () => {
-  $(".right-bar-trigger").on("click", (e) => {
+  $("body").on("click", ".right-bar-trigger", (e) => {
     const el = $(e.target).closest(".layout").find(".offcanvas-right");
     const ocInst = new bootstrap.Offcanvas(el);
     ocInst.show();
