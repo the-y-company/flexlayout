@@ -16,7 +16,7 @@ document: site
 mkdocs:
 	mkdocs build
 	
-mkdocs:
+mkdocs_dev:
 	mkdocs serve
 
 dev: document bundle_dev
