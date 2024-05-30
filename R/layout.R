@@ -46,11 +46,12 @@ flexlayout <- function(
       htmltools::tagAppendAttributes(class = "float-right right-bar-trigger")
 
   div(
-    class = "layout",
+    class = "layout position-relative",
     `data-layout` = sprintf("[%s,%s,%s]", left_width, center_width, right_width),
     flexlayoutDependencies(),
     p(
       class = "d-md-block d-lg-none pb-2",
+      style = "min-height:2rem",
       if(!is.null(left_button) && !is.null(left))
         left_button,
       if(!is.null(right_button) && !is.null(right))
