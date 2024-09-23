@@ -1,0 +1,16 @@
+.l-lg-block {
+  display: block !important;
+}
+
+.l-lg-none {
+  display: none !important;
+}
+
+@media (max-width: 991px) {
+  .l-md-block {
+    display: block !important;
+  }
+  .l-md-none {
+    display: none !important;
+  }
+}
