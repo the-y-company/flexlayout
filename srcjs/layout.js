@@ -1,11 +1,14 @@
-import { isInOffcanvas, isIntabs, setInOffcanvas, setInTabs } from "./state";
-import { getWidth } from "./utils";
+import { isInOffcanvas, isIntabs, setInOffcanvas, setInTabs } from "./state.js";
+import { getWidth } from "./utils.js";
+
+let WIDTH = 991;
 
 $(() => {
   handlePage();
 });
 
 const handlePage = () => {
+  setGlobal();
   handleLeftBar();
   handleRightBar();
 
@@ -14,7 +17,7 @@ const handlePage = () => {
       return;
     }
 
-    if (window.innerWidth > 991) {
+    if (window.innerWidth > WIDTH) {
       setInTabs(true);
       return;
     }
@@ -25,7 +28,7 @@ const handlePage = () => {
   window.addEventListener(
     "resize",
     () => {
-      if (window.innerWidth > 991) {
+      if (window.innerWidth > WIDTH) {
         moveAllToTabs();
         return;
       }
@@ -125,3 +128,15 @@ const moveAllToTabs = () => {
     $(".center-bar").css("width", `${w}%`);
   });
 };
+
+const setGlobal = () => {
+  const $el = $("#FLEXLAYOUT-GLOBALS")
+  if(!$el.length) return;
+
+  const dataString = $el.text();
+  const data = JSON.parse(dataString);
+  console.log(data)
+
+  if(data.width)
+    WIDTH = data.width;
+}
