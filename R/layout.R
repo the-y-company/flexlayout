@@ -50,7 +50,7 @@ flexlayout <- function(
     `data-layout` = sprintf("[%s,%s,%s]", left_width, center_width, right_width),
     flexlayoutDependencies(),
     p(
-      class = "d-md-block d-lg-none pb-2",
+      class = "l-md-block l-lg-none pb-2",
       style = "min-height:2rem",
       if(!is.null(left_button) && !is.null(left))
         left_button,
@@ -75,7 +75,7 @@ flexlayout <- function(
     div(
       class = "d-flex",
       div(
-        class = "d-none d-lg-block left-bar",
+        class = "d-none l-lg-block left-bar",
         style = sprintf("width:%s%%", left_width),
         left
       ),
@@ -85,7 +85,7 @@ flexlayout <- function(
         center
       ),
       div(
-        class = "d-none d-lg-block right-bar",
+        class = "d-none l-lg-block right-bar",
         style = sprintf("width:%s%%", right_width),
         right
       )
