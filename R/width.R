@@ -2,6 +2,8 @@
 #' 
 #' Define width when layout should expand or collapse.
 #' 
+#' @param width Customise breakpoint of flex layout.
+#' 
 #' @export
 defineGlobal <- function(
   width = 991L
@@ -33,7 +35,7 @@ defineGlobal <- function(
       tags$script(
         id = "FLEXLAYOUT-GLOBALS",
         type = "application/json",
-        HTML(as.character(opts))
+        shiny::HTML(as.character(opts))
       ),
       tags$style(shiny::HTML(style))
     )

@@ -6,6 +6,9 @@
 \usage{
 defineGlobal(width = 991L)
 }
+\arguments{
+\item{width}{Customise breakpoint of flex layout.}
+}
 \description{
 Define width when layout should expand or collapse.
 }
